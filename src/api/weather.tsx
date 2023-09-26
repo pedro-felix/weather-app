@@ -1,5 +1,5 @@
 const WEATHER_API = 'https://api.open-meteo.com/v1',
-    GEOCODING_API = 'https://geocoding-api.open-meteo.com/v1/';
+    GEOCODING_API = 'https://geocoding-api.open-meteo.com/v1';
 
 export async function getWeather(weatherParams: {[key: string]: string|number|null}) {
     let weatherParamsString= '';

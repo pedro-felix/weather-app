@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getWeather } from '../api/weather';
 import { getErrorMessage } from '../helper';
+import { useSetRecoilState } from 'recoil';
+import { recoilWeather } from '../state/atoms';
 
-export function useFetchWeather(weatherParams: {[key: string]: string|number|null}): [boolean, string | null, {[key:string]: string | number | {[key:string]: string | number[]}}] {
-    const [weather, setWeather] = useState({});
+export function useFetchWeather(weatherParams: {[key: string]: string|number|null}): [boolean, string | null] {
+    const setWeather = useSetRecoilState(recoilWeather);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError]= useState<string | null>(null);
 
@@ -34,7 +36,7 @@ export function useFetchWeather(weatherParams: {[key: string]: string|number|nul
                 cancel = true;
             };
         }
-    }, [weatherParams]);
+    }, [weatherParams, setWeather]);
     
-    return [isLoading, error, weather];
+    return [isLoading, error];
 }

@@ -2,16 +2,18 @@ import WeatherPicture from './WeatherPicture';
 import WeatherHumidity from './WeatherHumidity';
 import WeatherWind from './WeatherWind';
 import WeatherMinMaxTemp from './WeatherMinMaxTemp';
+import {useRecoilValue} from 'recoil';
+import { recoilWeather } from '../state/atoms';
 
-type Props = {
-    fetchedWeather: {
-        [key: string]: string | number | {
-            [key: string]: string | number[];
-        };
-    }
+type fetchedWeatherType = {
+    [key: string]: string | number | {
+        [key: string]: string | number[];
+    };
 };
 
-function NextDaysWeather({fetchedWeather}: Props) {
+function NextDaysWeather() {
+    const fetchedWeather:fetchedWeatherType = useRecoilValue(recoilWeather);
+
     return(
         <section>
             {fetchedWeather['daily'] instanceof Object && Object.keys(fetchedWeather['daily']['sunset']).map((day) => {

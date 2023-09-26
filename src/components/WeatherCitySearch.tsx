@@ -1,17 +1,14 @@
 import { AutoComplete } from 'primereact/autocomplete';
 import { useRef, useState } from 'react';
-import React from 'react';
 import { getWeatherCity } from '../api/weather';
 import 'primereact/resources/themes/lara-light-indigo/theme.css'; //theme  
 import 'primereact/resources/primereact.min.css'; //core
+import {useRecoilState, useSetRecoilState} from 'recoil';
+import {recoilCityValue, recoilWeatherParams} from '../state/atoms';
 
-type Props = {
-    cityValue: string,
-    setCityValue: React.Dispatch<React.SetStateAction<string>>
-    setWeatherParams: React.Dispatch<React.SetStateAction<{[key:string]: string | number | null}>>
-}
-
-function WeatherCitySearch({cityValue, setCityValue, setWeatherParams}: Props) {
+function WeatherCitySearch() {
+    const [cityValue, setCityValue] = useRecoilState(recoilCityValue),
+        setWeatherParams = useSetRecoilState(recoilWeatherParams);
     const [results, setResults] = useState<{[key:string]:string}[]>([]),
         [items, setItems] = useState<string[]>([]),
         ref = useRef<HTMLInputElement | null>(null);
@@ -27,11 +24,13 @@ function WeatherCitySearch({cityValue, setCityValue, setWeatherParams}: Props) {
 
     function select(selectedValue:string) {
         const indexOfselectedValue = items.indexOf(selectedValue);
-        setWeatherParams((prevState) => ({
-            ...prevState,
-            ['latitude']: results[indexOfselectedValue].latitude,
-            ['longitude']: results[indexOfselectedValue].longitude
-        }));
+        setWeatherParams(prevState => {
+            return {
+                ...prevState,
+                ['latitude']: results[indexOfselectedValue].latitude,
+                ['longitude']: results[indexOfselectedValue].longitude
+            };
+        });
     }
 
     return (

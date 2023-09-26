@@ -2,17 +2,18 @@ import WeatherPicture from './WeatherPicture';
 import WeatherTemperature from './WeatherTemperature';
 import WeatherHumidity from './WeatherHumidity';
 import WeatherWind from './WeatherWind';
+import {useRecoilValue} from 'recoil';
+import { recoilWeather } from '../state/atoms';
 
-type Props = {
-    fetchedWeather: {
-        [key: string]: string | number | {
-            [key: string]: string | number[];
-        };
-    }
+type fetchedWeatherType = {
+    [key: string]: string | number | {
+        [key: string]: string | number[];
+    };
 };
 
-function DailyHoursWeather({fetchedWeather}: Props) {
-    const today = new Date(),
+function DailyHoursWeather() {
+    const fetchedWeather:fetchedWeatherType = useRecoilValue(recoilWeather),
+        today = new Date(),
         hourActually = today.getHours() + 1;
 
     return(
