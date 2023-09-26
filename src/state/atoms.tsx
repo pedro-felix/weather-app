@@ -2,7 +2,7 @@ import {atom} from 'recoil';
 
 export const recoilCityValue = atom({
     key: 'cityValue',
-    default: '',
+    default: localStorage.getItem('weatherCityValue')?.replace(/"/g, '') || '',
 });
 
 export const recoilWeatherParams = atom({

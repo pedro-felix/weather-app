@@ -8,8 +8,8 @@ import {recoilCityValue, recoilWeatherParams} from '../state/atoms';
 
 function WeatherCitySearch() {
     const [cityValue, setCityValue] = useRecoilState(recoilCityValue),
-        setWeatherParams = useSetRecoilState(recoilWeatherParams);
-    const [results, setResults] = useState<{[key:string]:string}[]>([]),
+        setWeatherParams = useSetRecoilState(recoilWeatherParams),
+        [results, setResults] = useState<{[key:string]:string}[]>([]),
         [items, setItems] = useState<string[]>([]),
         ref = useRef<HTMLInputElement | null>(null);
 
