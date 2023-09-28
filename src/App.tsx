@@ -5,34 +5,33 @@ import NextDaysWeather from './components/NextDaysWeather';
 import WeatherCitySearch from './components/WeatherCitySearch';
 import Header from './components/Header';
 import {useRecoilValue} from 'recoil';
-import {recoilWeatherParams} from './state/atoms';
+import {recoilDarkMode, recoilWeatherParams} from './state/atoms';
 
 function App() {
-    const weatherParams = useRecoilValue(recoilWeatherParams),
+    const darkMode = useRecoilValue(recoilDarkMode),
+        weatherParams = useRecoilValue(recoilWeatherParams),
         [isLoading, error] = useFetchWeather(weatherParams);
 
     return (
-        <main>
-            <Header />
-            <hr />
-            {isLoading ? (
-                <p>Chargement en cours</p>
-            ) : (
-                error ? (
-                    <p>{error.toString()}</p>
+        <section className={`font-poppins${darkMode ? ' dark' : ''}`}>
+            <main className='min-h-screen flex flex-col items-center dark:bg-black dark:text-white transition duration-500'>
+                <Header />
+                {isLoading ? (
+                    <p>Chargement en cours</p>
                 ) : (
-                    <>
-                        <WeatherCitySearch />
-                        <hr />
-                        <DailyWeather />
-                        <hr />
-                        <DailyHoursWeather />
-                        <hr />
-                        <NextDaysWeather />
-                    </>
-                )
-            )}
-        </main>
+                    error ? (
+                        <p>{error.toString()}</p>
+                    ) : (
+                        <>
+                            <WeatherCitySearch />
+                            <DailyWeather />
+                            <DailyHoursWeather />
+                            <NextDaysWeather />
+                        </>
+                    )
+                )}
+            </main>
+        </section>
     );
 }
 

@@ -7,7 +7,8 @@ import {useRecoilState, useSetRecoilState} from 'recoil';
 import {recoilCityValue, recoilWeatherParams} from '../state/atoms';
 
 function WeatherCitySearch() {
-    const [cityValue, setCityValue] = useRecoilState(recoilCityValue),
+    const [localRecoilCityValue, setRecoilCityValue] = useRecoilState(recoilCityValue),
+        [cityValue, setCityValue] = useState(localRecoilCityValue),
         setWeatherParams = useSetRecoilState(recoilWeatherParams),
         [results, setResults] = useState<{[key:string]:string}[]>([]),
         [items, setItems] = useState<string[]>([]),
@@ -31,10 +32,24 @@ function WeatherCitySearch() {
                 ['longitude']: results[indexOfselectedValue].longitude
             };
         });
+        setRecoilCityValue(selectedValue);
     }
 
     return (
-        <AutoComplete placeholder="Rechercher une ville" inputRef={ref} appendTo='self' value={cityValue} suggestions={items} completeMethod={search} onSelect={(e) => select(e.value)} onChange={(e) => setCityValue(e.value)}  />
+        <section className='sticky z-10 top-11 w-full p-2 md:max-w-3xl'>
+            <AutoComplete
+                className='w-full'
+                inputClassName='w-full !border-2 !border-black !text-black transition-all dark:!border-white'
+                placeholder="Rechercher une ville"
+                inputRef={ref}
+                appendTo='self'
+                value={cityValue}
+                suggestions={items}
+                completeMethod={search}
+                onSelect={(e) => select(e.value)}
+                onChange={(e) => setCityValue(e.value)}
+            />
+        </section>
     );
 }
 
