@@ -36,7 +36,7 @@ function WeatherCitySearch() {
     }
 
     return (
-        <section className='sticky z-10 top-11 w-full p-2 md:max-w-3xl'>
+        <section className='flex-1 sticky z-10 top-11 w-full p-2 md:max-w-3xl'>
             <AutoComplete
                 className='w-full'
                 inputClassName='w-full !border-2 !border-black !text-black transition-all dark:!border-white'

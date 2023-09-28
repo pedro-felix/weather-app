@@ -18,13 +18,13 @@ function NextDaysWeather() {
     return(
         fetchedWeather !== null ? (
             <>
-                <h2>Prochains jours</h2>
+                <h2 className='text-xl'>Prochains jours</h2>
                 <section className='flex w-full h-auto m-5 p-2 md:max-w-3xl overflow-y-hidden overflow-x-scroll scrolling-touch shadow-sm shadow-black rounded dark:shadow-md dark:shadow-white'>
                     <ul className='flex flex-nowrap'>
                         {fetchedWeather['daily'] instanceof Object && Object.keys(fetchedWeather['daily']['sunset']).map((day) => {
                             return day !== '0' ? (
-                                <li className='flex p-2 w-full shrink-0 flex-wrap md:max-w-fit shadow-right-box dark:shadow-right-box-dark' key={day}>
-                                    <h2 className='w-full text-center'>{dateFromInt(Number(day))}</h2>
+                                <li className='flex p-2 w-1/2 shrink-0 flex-wrap shadow-right-box dark:shadow-right-box-dark' key={day}>
+                                    <h3 className='w-full text-center text-lg'>{dateFromInt(Number(day))}</h3>
                                     <div className='w-1/2'>
                                         <WeatherPicture sunset={fetchedWeather['daily'] instanceof Object && fetchedWeather['daily']['sunset'][Number(day)]} datasArray={fetchedWeather['hourly']} iteration={12} />
                                     </div>

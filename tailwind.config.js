@@ -20,6 +20,9 @@ export default {
             boxShadow: {
                 'right-box': '8px 0 8px -10px #000000',
                 'right-box-dark': '8px 0 8px -10px #fff'
+            },
+            animation: {
+                'spin-slow': 'spin 3s ease infinite'
             }
         },
     },

@@ -22,9 +22,9 @@ function UniqueWeatherData ({className, weatherData, uniqueData, iteration, day}
         <section className='grid grid-cols-2auto'>
             <figure className={`h-full transform ${rotateClasses[windDirection]}`}>
                 {darkMode ? (
-                    <img className='h-full' src={getImgUrl(uniqueData['imgDark'])} alt={uniqueData['imgAlt']} />
+                    <img className='h-full object-cover' src={getImgUrl(uniqueData['imgDark'])} alt={uniqueData['imgAlt']} />
                 ) : (
-                    <img className='h-full' src={getImgUrl(uniqueData['imgLight'])} alt={uniqueData['imgAlt']} />
+                    <img className='h-full object-cover' src={getImgUrl(uniqueData['imgLight'])} alt={uniqueData['imgAlt']} />
                 )}
             </figure>
             <p className={className || ''}>
