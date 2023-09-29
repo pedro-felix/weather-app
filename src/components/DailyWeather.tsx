@@ -21,19 +21,19 @@ function DailyWeather() {
             <section className='m-5 flex w-full md:max-w-3xl border-2 border-black shadow-sm shadow-black rounded transition dark:shadow-lg dark:shadow-white dark:border-white'>
                 <ul className='flex flex-col flex-wrap justify-center w-2/5 gap-1 items-center'>
                     <li>
-                        <UniqueWeatherData className='text-6xl' weatherData={fetchedWeather} uniqueData={temperatureDatas} iteration={hourActually} day={0} />
+                        <UniqueWeatherData className='text-5xl md:text-6xl' weatherData={fetchedWeather} uniqueData={temperatureDatas} iteration={hourActually} day={0} />
                     </li>
                     <li>
-                        <UniqueWeatherData className='text-3xl' weatherData={fetchedWeather} uniqueData={humidityDatas} iteration={hourActually} day={0} />
+                        <UniqueWeatherData className='text-2xl md:text-3xl' weatherData={fetchedWeather} uniqueData={humidityDatas} iteration={hourActually} day={0} />
                     </li>
                     <li>
-                        <UniqueWeatherData className='text-3xl' weatherData={fetchedWeather} uniqueData={windDatas} iteration={hourActually} day={0} />
+                        <UniqueWeatherData className='text-2xl md:text-3xl' weatherData={fetchedWeather} uniqueData={windDatas} iteration={hourActually} day={0} />
                     </li>
                     <li>
-                        <WeatherMinMaxTemp className='text-3xl' minMaxTempData={fetchedWeather} iteration={0} />
+                        <WeatherMinMaxTemp className='text-2xl md:text-3xl' minMaxTempData={fetchedWeather} iteration={0} />
                     </li>
                     <li>
-                        <UniqueWeatherData className='text-3xl' weatherData={fetchedWeather} uniqueData={precipitationDatas} iteration={hourActually} day={0} />
+                        <UniqueWeatherData className='text-2xl md:text-3xl' weatherData={fetchedWeather} uniqueData={precipitationDatas} iteration={hourActually} day={0} />
                     </li>
                 </ul>
                 <div className='w-3/5'>
