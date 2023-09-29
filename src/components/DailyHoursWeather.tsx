@@ -20,16 +20,16 @@ function DailyHoursWeather() {
         fetchedWeather !== null && slicedWeatherLength ? (
             <>
                 <h2 className='text-xl'>Prochaines heures</h2>
-                <section className='flex w-full h-auto m-5 p-2 md:max-w-3xl overflow-y-hidden overflow-x-scroll scrolling-touch shadow-sm shadow-black rounded dark:shadow-md dark:shadow-white'>
+                <section className='flex w-full h-auto m-5 p-2 md:max-w-3xl border-2 border-black overflow-y-hidden overflow-x-scroll scrolling-touch shadow-sm shadow-black rounded transition dark:shadow-md dark:shadow-white dark:border-white'>
                     <ul className='flex flex-nowrap'>
                         {fetchedWeather['hourly'] instanceof Object && (
                             Object.keys(fetchedWeather['hourly']['temperature_2m']).slice(hourActually, 24)?.map((n) => (
-                                <li className='flex p-2 w-1/2 shrink-0 flex-wrap shadow-right-box dark:shadow-right-box-dark' key={n}>
+                                <li className='flex p-2 w-full max-w-sm shrink-0 flex-wrap shadow-right-box transition dark:shadow-right-box-dark'  key={n}>
                                     <h3 className='w-full text-center text-lg'>{n}h00</h3>
                                     <div className='w-1/2'>
-                                        <WeatherPicture sunset={fetchedWeather['daily'] instanceof Object && fetchedWeather['daily']['sunset']['0']} datasArray={fetchedWeather['hourly']} iteration={n} />
+                                        <WeatherPicture sunsetRise={fetchedWeather['daily'] instanceof Object && [fetchedWeather['daily']['sunrise']['0'], fetchedWeather['daily']['sunset']['0']]} datasArray={fetchedWeather['hourly']} iteration={n} />
                                     </div>
-                                    <ul className='flex flex-col flex-wrap w-1/2 items-center'>
+                                    <ul className='flex flex-col flex-wrap w-1/2 items-center justify-center'>
                                         <li>
                                             <UniqueWeatherData className='text-2xl' weatherData={fetchedWeather} uniqueData={temperatureDatas} iteration={n} day={0}/>
                                         </li>

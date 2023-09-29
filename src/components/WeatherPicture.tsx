@@ -1,17 +1,20 @@
 import { weatherIconsJson } from '../json/weatherIcons';
+import { isItDay } from '../helper';
 
 type Props = {
-    sunset: string | number | false,
+    sunsetRise: [string | number | false, string | number | false] | false,
     datasArray: string | number | { [key: string]: string | number[]},
     iteration: string | number
 }
 
-function WeatherPicture({sunset, datasArray, iteration}: Props) {
-    const sunsetToDay = sunset.toString().split('T')[1] || '20:00';
+function WeatherPicture({sunsetRise, datasArray, iteration}: Props) {
+    const iterationTime = datasArray instanceof Object && datasArray['time'][Number(iteration)].toString().split('T')[1],
+        iterationWeatherCode = datasArray instanceof Object && datasArray['weathercode'][Number(iteration)].toString() || '',
+        partofDay = isItDay(sunsetRise, iterationTime) ? 'day': 'night';
 
     return (
         <figure className='w-full'>
-            <img className='w-full' src={datasArray instanceof Object && weatherIconsJson[datasArray['weathercode'][Number(iteration)].toString()][datasArray['time'][Number(iteration)].toString().split('T')[1] > sunsetToDay ? 'night' : 'day']['image'].toString() || ''} alt={datasArray instanceof Object && weatherIconsJson[datasArray['weathercode'][Number(iteration)].toString()]['day']['description'].toString() || ''} />
+            <img className='w-full' src={weatherIconsJson[iterationWeatherCode][partofDay]['image'].toString() || ''} alt={weatherIconsJson[iterationWeatherCode][partofDay]['description'].toString() || ''} />
         </figure>
     );
 }

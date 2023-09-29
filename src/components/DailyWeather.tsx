@@ -18,7 +18,7 @@ function DailyWeather() {
 
     return (
         fetchedWeather !== null && fetchedWeather['hourly'] instanceof Object ? (
-            <section className='m-5 flex w-full md:max-w-3xl shadow-sm shadow-black rounded dark:shadow-lg dark:shadow-white'>
+            <section className='m-5 flex w-full md:max-w-3xl border-2 border-black shadow-sm shadow-black rounded transition dark:shadow-lg dark:shadow-white dark:border-white'>
                 <ul className='flex flex-col flex-wrap justify-center w-2/5 gap-1 items-center'>
                     <li>
                         <UniqueWeatherData className='text-6xl' weatherData={fetchedWeather} uniqueData={temperatureDatas} iteration={hourActually} day={0} />
@@ -37,7 +37,7 @@ function DailyWeather() {
                     </li>
                 </ul>
                 <div className='w-3/5'>
-                    <WeatherPicture sunset={fetchedWeather['daily'] instanceof Object && fetchedWeather['daily']['sunset']['0']} datasArray={fetchedWeather['hourly']} iteration={hourActually} />
+                    <WeatherPicture sunsetRise={fetchedWeather['daily'] instanceof Object && [fetchedWeather['daily']['sunrise']['0'], fetchedWeather['daily']['sunset']['0']]} datasArray={fetchedWeather['hourly']} iteration={hourActually} />
                 </div>
             </section>
         ) : (

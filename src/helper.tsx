@@ -19,3 +19,12 @@ export function liveTime() {
 export function dateFromInt(dayInt:number) {
     return daysArray[dayInt];
 }
+
+type sunsetRise = [string | number | false, string | number | false] | false;
+
+export function isItDay(sunsetRise:sunsetRise, iterationTime: string | false) {
+    const sunriseToday = sunsetRise instanceof Array && sunsetRise[0].toString().split('T')[1] || '06:00',
+        sunsetToDay = sunsetRise instanceof Array && sunsetRise[1].toString().split('T')[1] || '20:00';
+        
+    return iterationTime > sunriseToday && iterationTime < sunsetToDay;
+}

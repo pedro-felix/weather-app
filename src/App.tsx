@@ -16,7 +16,7 @@ function App() {
 
     return (
         <section className={`font-poppins${darkMode ? ' dark' : ''}`}>
-            <main className='min-h-screen flex flex-col items-center dark:bg-black dark:text-white transition duration-500'>
+            <main className='min-h-screen flex flex-col items-center p-2 md:p-0 dark:bg-black dark:text-white transition duration-500'>
                 <Header />
                 {isLoading ? (
                     <Loader />
