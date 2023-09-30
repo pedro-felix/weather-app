@@ -2,7 +2,7 @@ import {atom} from 'recoil';
 
 export const recoilDarkMode = atom({
     key: 'darkMode',
-    default: JSON.parse(localStorage.getItem('darkMode') || '{"value":false}')['value']
+    default: JSON.parse(localStorage.getItem('darkMode') || '{"value":false}')['value'] as boolean
 });
 
 export const recoilCityValue = atom({
