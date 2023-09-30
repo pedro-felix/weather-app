@@ -14,7 +14,7 @@ function WeatherPicture({sunsetRise, datasArray, iteration}: Props) {
 
     return (
         <figure className='w-full'>
-            <img className='w-full' src={weatherIconsJson[iterationWeatherCode][partofDay]['image'].toString() || ''} alt={weatherIconsJson[iterationWeatherCode][partofDay]['description'].toString() || ''} />
+            <img className='w-full dark:invert' src={weatherIconsJson[iterationWeatherCode][partofDay]['image'].toString() || ''} alt={weatherIconsJson[iterationWeatherCode][partofDay]['description'].toString() || ''} />
         </figure>
     );
 }

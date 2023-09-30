@@ -10,6 +10,7 @@ export default {
                 'poppins': ['Poppins'],
             },
             backgroundImage: {
+                'main':'url(\'/src/assets/bg.jpeg\')',
                 'toggle-dark': 'url(\'/src/assets/toggle-dark.svg\')',
                 'toggle-light': 'url(\'/src/assets/toggle-light.svg\')'
             },

@@ -18,7 +18,7 @@ function DailyWeather() {
 
     return (
         fetchedWeather !== null && fetchedWeather['hourly'] instanceof Object ? (
-            <section className='m-5 flex w-full md:max-w-3xl border-2 border-black shadow-sm shadow-black rounded transition dark:shadow-lg dark:shadow-white dark:border-white'>
+            <section className='bg-white m-5 flex w-full md:max-w-3xl border-2 border-black rounded transition'>
                 <ul className='flex flex-col flex-wrap justify-center w-2/5 gap-1 items-center'>
                     <li>
                         <UniqueWeatherData className='text-5xl md:text-6xl' weatherData={fetchedWeather} uniqueData={temperatureDatas} iteration={hourActually} day={0} />

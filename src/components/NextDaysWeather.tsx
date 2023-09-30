@@ -18,36 +18,38 @@ function NextDaysWeather() {
     return(
         fetchedWeather !== null ? (
             <>
-                <h2 className='text-xl'>Prochains jours</h2>
-                <section className='flex w-full h-auto m-5 p-2 md:max-w-3xl border-2 border-black overflow-y-hidden overflow-x-scroll scrolling-touch shadow-sm shadow-black rounded transition dark:shadow-md dark:shadow-white dark:border-white'>
-                    <ul className='flex flex-nowrap'>
-                        {fetchedWeather['daily'] instanceof Object && Object.keys(fetchedWeather['daily']['sunset']).map((day) => {
-                            return day !== '0' ? (
-                                <li className='flex p-2 w-full max-w-sm shrink-0 flex-wrap shadow-right-box dark:shadow-right-box-dark' key={day}>
-                                    <h3 className='w-full text-center text-lg'>{dateFromInt(Number(day))}</h3>
-                                    <div className='w-1/2'>
-                                        <WeatherPicture sunsetRise={fetchedWeather['daily'] instanceof Object && [fetchedWeather['daily']['sunrise'][Number(day)], fetchedWeather['daily']['sunset'][Number(day)]]} datasArray={fetchedWeather['hourly']} iteration={12} />
-                                    </div>
-                                    <ul className='flex flex-col flex-wrap w-1/2 items-center justify-center'>
-                                        <li>
-                                            <WeatherMinMaxTemp minMaxTempData={fetchedWeather} iteration={Number(day)} />
-                                        </li>
-                                        <li>
-                                            <UniqueWeatherData weatherData={fetchedWeather} uniqueData={humidityDatas} iteration={12} day={Number(day)} />
-                                        </li>
-                                        <li>
-                                            <UniqueWeatherData weatherData={fetchedWeather} uniqueData={windDatas} iteration={12} day={Number(day)} />
-                                        </li>
-                                        <li>
-                                            <UniqueWeatherData weatherData={fetchedWeather} uniqueData={precipitationDatas} iteration={12} day={Number(day)} />
-                                        </li>
-                                    </ul>
-                                </li>
-                            ) : (
-                                null
-                            );
-                        })}
-                    </ul>
+                <section className='flex flex-col justify-center items-center w-full h-auto m-5 p-2 md:max-w-3xl border-2 bg-white  border-black rounded'>
+                    <h2 className='text-xl'>Prochains jours</h2>
+                    <section className='flex w-full h-auto overflow-y-hidden overflow-x-scroll scrolling-touch transition'>
+                        <ul className='flex flex-nowrap'>
+                            {fetchedWeather['daily'] instanceof Object && Object.keys(fetchedWeather['daily']['sunset']).map((day) => {
+                                return day !== '0' ? (
+                                    <li className='flex p-2 w-full max-w-sm shrink-0 flex-wrap shadow-right-box' key={day}>
+                                        <h3 className='w-full text-center text-lg'>{dateFromInt(Number(day))}</h3>
+                                        <div className='w-1/2'>
+                                            <WeatherPicture sunsetRise={fetchedWeather['daily'] instanceof Object && [fetchedWeather['daily']['sunrise'][Number(day)], fetchedWeather['daily']['sunset'][Number(day)]]} datasArray={fetchedWeather['hourly']} iteration={12} />
+                                        </div>
+                                        <ul className='flex flex-col flex-wrap w-1/2 items-center justify-center'>
+                                            <li>
+                                                <WeatherMinMaxTemp minMaxTempData={fetchedWeather} iteration={Number(day)} />
+                                            </li>
+                                            <li>
+                                                <UniqueWeatherData weatherData={fetchedWeather} uniqueData={humidityDatas} iteration={12} day={Number(day)} />
+                                            </li>
+                                            <li>
+                                                <UniqueWeatherData weatherData={fetchedWeather} uniqueData={windDatas} iteration={12} day={Number(day)} />
+                                            </li>
+                                            <li>
+                                                <UniqueWeatherData weatherData={fetchedWeather} uniqueData={precipitationDatas} iteration={12} day={Number(day)} />
+                                            </li>
+                                        </ul>
+                                    </li>
+                                ) : (
+                                    null
+                                );
+                            })}
+                        </ul>
+                    </section>
                 </section>
             </>
         ) : null

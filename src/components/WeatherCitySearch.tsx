@@ -39,7 +39,7 @@ function WeatherCitySearch() {
         <section className='flex-1 sticky z-10 top-16 w-full m-5 md:max-w-3xl'>
             <AutoComplete
                 className='w-full'
-                inputClassName='w-full !border-2 !border-black !text-black !shadow-sm !shadow-black transition-all dark:!shadow-white dark:!border-white'
+                inputClassName='w-full !border-2 !border-black !text-black transition-all'
                 placeholder="Rechercher une ville"
                 inputRef={ref}
                 appendTo='self'
