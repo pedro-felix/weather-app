@@ -24,15 +24,22 @@ function WeatherCitySearch() {
     }
 
     function select(selectedValue:string) {
-        const indexOfselectedValue = items.indexOf(selectedValue);
+        const indexOfselectedValue = items.indexOf(selectedValue),
+            cityCoordinates = {
+                'latitude': results[indexOfselectedValue].latitude,
+                'longitude': results[indexOfselectedValue].longitude
+            };
+
         setWeatherParams(prevState => {
             return {
                 ...prevState,
-                ['latitude']: results[indexOfselectedValue].latitude,
-                ['longitude']: results[indexOfselectedValue].longitude
+                ...cityCoordinates
             };
         });
+        localStorage.setItem('cityCoordinates', JSON.stringify(cityCoordinates));
+
         setRecoilCityValue(selectedValue);
+        localStorage.setItem('weatherCityValue', selectedValue);
     }
 
     return (

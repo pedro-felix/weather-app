@@ -14,8 +14,8 @@ export const recoilWeatherParams = atom({
     key: 'weatherParams',
     default: {
         'lang':'fr',
-        'latitude': null as null | string,
-        'longitude': null as null | string,
+        'latitude': JSON.parse(localStorage.getItem('cityCoordinates') || '{"cityCoordinates":false}')['latitude'] || null as null | number,
+        'longitude': JSON.parse(localStorage.getItem('cityCoordinates') || '{"cityCoordinates":false}')['longitude'] || null as null | number,
         'hourly': 'temperature_2m,relativehumidity_2m,windspeed_10m,winddirection_10m,precipitation_probability,weathercode',
         'daily': 'temperature_2m_max,temperature_2m_min,weathercode,sunset,sunrise',
         'forecast_days': 7,
