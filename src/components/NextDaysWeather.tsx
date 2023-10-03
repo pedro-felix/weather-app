@@ -5,6 +5,8 @@ import { useRecoilValue } from 'recoil';
 import { recoilWeather } from '../state/atoms';
 import { dateFromInt } from '../helper';
 import { humidityDatas, windDatas, precipitationDatas } from '../json/uniqueWeatherDatas';
+import { useHorizontalScroll } from '../hooks/useHorizontalScroll';
+import { useRef } from 'react';
 
 type fetchedWeatherType = {
     [key: string]: string | number | {
@@ -13,14 +15,17 @@ type fetchedWeatherType = {
 } | null;
 
 function NextDaysWeather() {
-    const fetchedWeather:fetchedWeatherType = useRecoilValue(recoilWeather);
+    const fetchedWeather:fetchedWeatherType = useRecoilValue(recoilWeather),
+        scrollRef = useRef<HTMLElement | null>(null);
+
+    useHorizontalScroll(scrollRef);
 
     return(
         fetchedWeather !== null ? (
             <>
-                <section className='flex flex-col justify-center items-center w-full h-auto m-5 p-2 md:max-w-3xl border-2 bg-white  border-black rounded'>
+                <section className='flex flex-col justify-center items-center w-full h-auto m-5 p-2 md:max-w-3xl border-2 bg-white  border-black rounded dark:invert'>
                     <h2 className='text-xl'>Prochains jours</h2>
-                    <section className='flex w-full h-auto overflow-y-hidden overflow-x-scroll scrolling-touch transition'>
+                    <section ref={scrollRef} className='flex w-full h-auto overflow-y-hidden overflow-x-scroll scrolling-touch transition'>
                         <ul className='flex flex-nowrap'>
                             {fetchedWeather['daily'] instanceof Object && Object.keys(fetchedWeather['daily']['sunset']).map((day) => {
                                 return day !== '0' ? (

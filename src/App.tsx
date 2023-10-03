@@ -15,8 +15,8 @@ function App() {
         [isLoading, error] = useFetchWeather(weatherParams);
 
     return (
-        <section className={`bg-[url('/src/assets/bg.jpeg')] font-poppins${darkMode ? ' dark transition transition-500 invert' : ''}`}>
-            <main className='backdrop-grayscale min-h-screen flex flex-col items-center p-2 md:p-0 transition duration-500'>
+        <section className={`bg-[url('/src/assets/bg.jpeg')] font-poppins${darkMode ? ' dark transition transition-500' : ''}`}>
+            <main className='backdrop-grayscale min-h-screen flex flex-col items-center p-2 md:p-0 transition duration-500 dark:backdrop-invert'>
                 <Header />
                 {isLoading ? (
                     <Loader />
