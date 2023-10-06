@@ -3,7 +3,7 @@ import UniqueWeatherData from './UniqueWeatherData';
 import WeatherMinMaxTemp from './WeatherMinMaxTemp';
 import { useRecoilValue } from 'recoil';
 import { recoilWeather } from '../state/atoms';
-import { dateFromInt } from '../helper';
+import { dateFromRef } from '../helper';
 import { humidityDatas, windDatas, precipitationDatas } from '../json/uniqueWeatherDatas';
 import { useHorizontalScroll } from '../hooks/useHorizontalScroll';
 import { useRef } from 'react';
@@ -16,7 +16,8 @@ type fetchedWeatherType = {
 
 function NextDaysWeather() {
     const fetchedWeather:fetchedWeatherType = useRecoilValue(recoilWeather),
-        scrollRef = useRef<HTMLElement | null>(null);
+        scrollRef = useRef<HTMLElement | null>(null),
+        toDay = new Date().getDay();
 
     useHorizontalScroll(scrollRef);
 
@@ -30,7 +31,7 @@ function NextDaysWeather() {
                             {fetchedWeather['daily'] instanceof Object && Object.keys(fetchedWeather['daily']['sunset']).map((day) => {
                                 return day !== '0' ? (
                                     <li className='flex p-2 w-full max-w-sm shrink-0 flex-wrap shadow-right-box' key={day}>
-                                        <h3 className='w-full text-center text-lg'>{dateFromInt(Number(day))}</h3>
+                                        <h3 className='w-full text-center text-lg'>{dateFromRef(toDay, Number(day))}</h3>
                                         <div className='w-1/2'>
                                             <WeatherPicture sunsetRise={fetchedWeather['daily'] instanceof Object && [fetchedWeather['daily']['sunrise'][Number(day)], fetchedWeather['daily']['sunset'][Number(day)]]} datasArray={fetchedWeather['hourly']} iteration={12} />
                                         </div>

@@ -17,7 +17,7 @@ function WeatherMinMaxTemp ({className, minMaxTempData, iteration}: Props) {
 
     return (
         <section className='grid grid-cols-3auto'>
-            <figure className='h-full'>
+            <figure className='h-full dark:invert'>
                 {darkMode ? (
                     <img className='h-full' src={getImgUrl('thermometer-min-dark.svg')} alt="Température minimale" />
                 ) : (

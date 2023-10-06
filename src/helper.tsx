@@ -20,6 +20,11 @@ export function dateFromInt(dayInt:number) {
     return daysArray[dayInt];
 }
 
+export function dateFromRef(dayRef:number, dayInt:number) {
+    const indexOfDay = dayRef + dayInt <= 6 ? dayRef + dayInt : dayRef + dayInt - 7;
+    return daysArray[indexOfDay];
+}
+
 type sunsetRise = [string | number | false, string | number | false] | false;
 
 export function isItDay(sunsetRise:sunsetRise, iterationTime: string | false) {
